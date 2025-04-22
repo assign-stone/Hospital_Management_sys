@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Management System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+        h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        .links {
+            margin: 20px 0;
+        }
+        .links a {
+            display: block;
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .links a:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Hospital Management System</h1>
+    <div class="links">
+        <a href="/adminUI/appointments/">Manage Appointments</a>
+        <a href="/adminUI/patients">Manage Patients</a>
+        <a href="/adminUI/departments">Manage Departments</a>
+        <a href="/adminUI/doctors">Manage Doctors</a>
+        <a href="/adminUI/nurses">Manage Nurses</a>
+    </div>
+</body>
+</html>

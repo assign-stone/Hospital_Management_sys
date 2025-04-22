@@ -1,0 +1,166 @@
+<!--<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Department</title>
+</head>
+<body>
+    <h1>Update Department</h1>
+
+    <!- Form to update department --
+    <form th:action="@{/adminUI/update/{id}(id=${department.id})}" th:object="${department}" method="post">
+        
+        <input type="hidden" th:field="*{id}"> <!-- Hidden field for the department ID --
+
+        <label for="name">Department Name:</label>
+        <input type="text" id="name" th:field="*{name}" required />
+
+        <label for="desc">Description:</label>
+        <input type="text" id="desc" th:field="*{desc}" required />
+
+        <label for="userId">User ID:</label>
+        <input type="number" id="userId" th:field="*{userId}" required />
+
+        <button type="submit">Update Department</button>
+    </form>
+
+    <br/>
+    <a th:href="@{/adminUI/departments}">Cancel</a> -- Link to cancel and go back to department list --
+</body>
+</html>v 
+
+
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit Department</title>
+</head>
+<body>
+    <h1>Edit Department</h1>
+
+    <form th:action="@{/adminUI/departments/update/{id}(id=${department.id})}" method="post">
+		
+		<input type="hidden" th:field="*{id}">
+		
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" th:value="${department.name}" />
+        
+        <label for="desc">Description:</label>
+        <input type="text" id="desc" name="desc" th:value="${department.desc}" />
+        
+		<label for="userId">User ID:</label>
+		       <input type="number" id="userId" name="userId" th:value="*{department.userId}" />
+       
+
+        <!- Link styled as button to submit the form --
+        <a href="/adminUI/departments" onclick="this.closest('form').submit(); return false;">Update Department</a>
+    </form>
+</body>
+</html> -->
+
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit Department</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            margin-top: 50px;
+            max-width: 600px;
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            font-weight: bold;
+        }
+        .form-control {
+            border-radius: 5px;
+        }
+        .btn-custom {
+            background-color: #007bff;
+            color: white;
+            border-radius: 5px;
+            width: 100%;
+        }
+        .btn-custom:hover {
+            background-color: #0056b3;
+        }
+        .back-link {
+            text-decoration: none;
+            color: #007bff;
+            font-size: 1.2rem;
+            margin-top: 20px;
+            display: inline-block;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        .form-control:focus {
+            box-shadow: none;
+            border-color: #0056b3;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Edit Department</h1>
+
+    <form th:action="@{/adminUI/update/{id}(id=${department.id})}" method="post">
+        <!-- Hidden field for the department ID -->
+        <input type="hidden" th:field="*{id}">
+        
+        <!-- Department Name -->
+        <div class="form-group">
+            <label for="name">Department Name</label>
+            <input type="text" id="name" th:field="*{name}" class="form-control" placeholder="Enter department name" required/>
+        </div>
+
+        <!-- Description -->
+        <div class="form-group">
+            <label for="desc">Description</label>
+            <input type="text" id="desc" th:field="*{desc}" class="form-control" placeholder="Enter description" required/>
+        </div>
+
+        <!-- User ID -->
+        <div class="form-group">
+            <label for="userId">User ID</label>
+            <input type="number" id="userId" th:field="*{userId}" class="form-control" placeholder="Enter user ID" required/>
+        </div>
+
+        <!-- Update Button -->
+        <button type="submit" class="btn btn-custom">Update Department</button>
+    </form>
+
+    <!-- Back Link -->
+    <a href="/adminUI/departments" class="back-link">Back to Departments List</a>
+</div>
+
+<!-- Bootstrap JS and dependencies (optional) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
+
+

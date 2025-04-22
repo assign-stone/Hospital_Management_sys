@@ -1,0 +1,235 @@
+<!--<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+</head>
+<body>
+    
+	
+	    <h1>Search Department</h1>
+	    <form th:action="@{/adminUI/search}" method="get">
+	        <label for="id">Search by ID:</label>
+	        <input type="text" id="id" name="id" placeholder="Enter department ID" th:value="${param.id}"/>
+
+	        <label for="name">Search by Name:</label>
+	        <input type="text" id="name" name="name" placeholder="Enter department Name" th:value="${param.name}"/>
+
+	        <button type="submit">Search</button>
+	    </form>
+	
+	
+	
+	<h1>Search Results</h1>
+
+    <!-- Display Search Result --
+    <div th:if="${department != null}">
+        <p><strong>Department ID:</strong> <span th:text="${department.id}"></span></p>
+        <p><strong>Name:</strong> <span th:text="${department.name}"></span></p>
+        <p><strong>Description:</strong> <span th:text="${department.desc}"></span></p>
+        <p><strong>User ID:</strong> <span th:text="${department.userId}"></span></p>
+    </div>
+
+    <!-- Display a message if no department found --
+    <div th:if="${department == null}">
+        <p th:text="${message != null ? message : 'No department found with the given criteria.'}"></p>
+    </div>
+
+    <br>
+    <a th:href="@{/adminUI/departments}">Back to Department List</a>
+</body>
+</html> -->
+
+
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <style>
+        /* General Page Styles */
+        body {
+            background-color: #f7f9fc;
+            font-family: 'Arial', sans-serif;
+            color: #333;
+        }
+
+        /* Container Styling */
+        .container {
+            margin-top: 50px;
+            max-width: 900px;
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Main Heading */
+        h1 {
+            font-size: 3rem;
+            color: #ffffff;
+            background: linear-gradient(45deg, #ff6f61, #ffb84d);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        /* Form Elements */
+        .form-group label {
+            font-weight: 600;
+            color: #007bff;
+        }
+
+        .form-control {
+            border-radius: 8px;
+            padding: 12px;
+            font-size: 1.1rem;
+            border: 2px solid #007bff;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus {
+            border-color: #ff6f61;
+            box-shadow: 0 0 5px rgba(255, 111, 97, 0.5);
+        }
+
+        .btn-custom {
+            background-color: #ff6f61;
+            color: white;
+            border-radius: 8px;
+            width: 100%;
+            padding: 12px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-custom:hover {
+            background-color: #ff3b2e;
+        }
+
+        /* Result Card Styling */
+        .search-result-card {
+            background-color: #ffffff;
+            border: 2px solid #f3f3f3;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .search-result-card h4 {
+            font-size: 1.8rem;
+            color: #ff6f61;
+            font-weight: bold;
+        }
+
+        .search-result-card p {
+            font-size: 1.1rem;
+            color: #555;
+        }
+
+        .result-label {
+            font-weight: 600;
+            color: #007bff;
+        }
+
+        .result-value {
+            font-weight: 400;
+            color: #333;
+        }
+
+        .no-results-message {
+            text-align: center;
+            font-size: 1.3rem;
+            color: #ff3b2e;
+            font-weight: 600;
+        }
+
+        /* Back Link Styling */
+        .back-link {
+            display: block;
+            text-decoration: none;
+            color: #007bff;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-top: 30px;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Card Hover Effect */
+        .search-result-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Form Spacing */
+        .form-group {
+            margin-bottom: 25px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Search Department</h1>
+
+    <!-- Search Form -->
+    <form th:action="@{/adminUI/search}" method="get">
+        <div class="form-group">
+            <label for="id">Search by ID</label>
+            <input type="text" id="id" name="id" placeholder="Enter department ID" class="form-control" th:value="${param.id}"/>
+        </div>
+
+        <div class="form-group">
+            <label for="name">Search by Name</label>
+            <input type="text" id="name" name="name" placeholder="Enter department Name" class="form-control" th:value="${param.name}"/>
+        </div>
+
+        <button type="submit" class="btn btn-custom">Search</button>
+    </form>
+
+    <hr>
+
+    <h1>Search Results</h1>
+
+    <!-- Display Search Result -->
+    <div th:if="${department != null}">
+        <div class="search-result-card">
+            <h4>Department Details</h4>
+            <p><span class="result-label">Department ID:</span> <span class="result-value" th:text="${department.id}"></span></p>
+            <p><span class="result-label">Name:</span> <span class="result-value" th:text="${department.name}"></span></p>
+            <p><span class="result-label">Description:</span> <span class="result-value" th:text="${department.desc}"></span></p>
+            <p><span class="result-label">User ID:</span> <span class="result-value" th:text="${department.userId}"></span></p>
+        </div>
+    </div>
+
+    <!-- Display a message if no department found -->
+    <div th:if="${department == null}">
+        <p class="no-results-message" th:text="${message != null ? message : 'No department found with the given criteria.'}"></p>
+    </div>
+
+    <a th:href="@{/adminUI/departments}" class="back-link">Back to Department List</a>
+</div>
+
+<!-- Bootstrap JS and dependencies (optional) -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
+
+

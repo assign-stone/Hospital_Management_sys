@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Register</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .navbar {
+            background-color: #333;
+            overflow: hidden;
+        }
+        .navbar .logo img {
+            height: 50px;
+            margin: 10px;
+        }
+        .navbar .nav-links a {
+            float: right;
+            display: block;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+        .container {
+            width: 50%;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 50px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        p {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <div class="navbar">
+        <!-- Logo -->
+        <div class="logo">
+            <img th:src="@{/images/logo.png}" alt="App Logo" class="logo">
+        </div>
+        <!-- Navigation Links -->
+        <div class="nav-links">
+            <a th:href="@{/home}">Home</a>
+        </div>
+    </div>
+    
+    <div class="container">
+        <h1>Register</h1>
+        <form th:action="@{/adminUI/register}" method="POST" th:object="${user}">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" th:field="*{name}" required/>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="text" id="email" th:field="*{email}" required/>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" th:field="*{password}" required/>
+            </div>
+            <div class="form-group">
+                <label for="role">Role:</label>
+                <select id="role" th:field="*{role}" required>
+                    <option value="ADMIN">ADMIN</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone:</label>
+                <input type="text" id="phone" th:field="*{phone}" required/>
+            </div>
+            <button type="submit">Register</button>
+        </form>
+        <p th:if="${message}" style="color:green;">${message}</p>
+        <p>Already have an account? <a th:href="@{/adminUI/login}">Login here</a></p>
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+<!--
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Register</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .navbar {
+            background-color: #333;
+            overflow: hidden;
+        }
+        .navbar .logo img {
+            height: 50px;
+            margin: 10px;
+        }
+        .navbar .nav-links a {
+            float: right;
+            display: block;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+        .container {
+            width: 50%;
+            margin: auto;
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 50px;
+        }
+        .input-row {
+            display: flex;
+            justify-content: space-between;
+        }
+        .form-group {
+            margin-bottom: 15px;
+            width: 48%;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        p {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+     Navbar 
+    <div class="navbar">
+         Logo 
+        <div class="logo">
+            <img th:src="@{/images/logo.png}" alt="App Logo" class="logo">
+        </div>
+         Navigation Links 
+        <div class="nav-links">
+            <a th:href="@{/home}">Home</a>
+        </div>
+    </div>
+    
+    <div class="container">
+        <h1>Register</h1>
+        <form th:action="@{/adminUI/register}" method="POST" th:object="${user}">
+            <div class="input-row">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" th:field="*{name}" required/>
+                </div>
+           
+            <div class="input-row">
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="text" id="email" th:field="*{email}" required/>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" th:field="*{password}" required/>
+            </div>
+			</div>
+			           <div class="form-group">
+			               <label for="role">Role:</label>
+			               <select id="role" th:field="*{role}" required>
+			                   <option value="ADMIN">ADMIN</option>
+			               </select>
+			           </div>
+			<div class="input-row">
+			               <div class="form-group">
+			                   <label for="phone">Phone:</label>
+			                   <input type="text" id="phone" th:field="*{phone}" required/>
+			               </div>
+			           
+            <button type="submit">Register</button>
+        </form>
+        <p th:if="${message}" style="color:green;">${message}</p>
+        <p>Already have an account? <a th:href="@{/adminUI/login}">Login here</a></p>
+    </div>
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Register</title>
+</head>
+<body>
+    <div th:include="index :: header"></div>
+    <h1>Register</h1>
+    <form th:action="@{/adminUI/register}" th:object="${user}" method="POST">
+        <table>
+            <tr>
+                <td>name:</td>
+                <td><input type="text" th:field="*{name}" /></td>
+            </tr>
+            <tr>
+                <td>Password:</td>
+                <td><input type="password" th:field="*{password}" /></td>
+            </tr>
+            <tr>
+                <td>Email:</td>
+                <td><input type="email" th:field="*{email}" /></td>
+            </tr>
+            <tr>
+                <td colspan="2"><input type="submit" value="Register" /></td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>-->

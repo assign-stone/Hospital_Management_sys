@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointments by Date</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .back-button {
+            background-color: #007BFF; /* Light Blue */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .back-button:hover {
+            background-color: #0056b3;
+        }
+
+        .update-button {
+            background-color: #0056b3; /* Light Navy Blue */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .update-button:hover {
+            background-color: #004085;
+        }
+
+        .delete-button {
+            background-color: #dc3545; /* Light Red */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .delete-button:hover {
+            background-color: #c82333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #6c757d; /* Light Grey */
+            color: white;
+        }
+
+        td {
+            background-color: #fff;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        form {
+            display: inline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Appointments for Date: <span th:text="${date}"></span></h1>
+    <a href="/adminUI/appointments/"><button class="back-button">Back to All Appointments</button></a>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Status</th>
+                <th>Date</th>
+                <th>Reason</th>
+                <th>Patient ID</th>
+                <th>Time</th>
+                <th>Nurse ID</th>
+                <th>Doctor ID</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>		
+            <tr th:each="appointment : ${appointments}">
+                <td th:text="${appointment.id}"></td>
+                <td th:text="${appointment.appStatus}"></td>
+                <td th:text="${appointment.date}"></td>
+                <td th:text="${appointment.disease}"></td>
+                <td th:text="${appointment.patient_id}"></td>
+                <td th:text="${appointment.time}"></td>
+                <td th:text="${appointment.nurse_id}"></td>
+                <td th:text="${appointment.physician_id}"></td>
+                <td>
+                    <a th:href="@{/adminUI/update/{id}(id=${appointment.id})}"><button class="update-button">Update</button></a>
+                    <form th:action="@{/adminUI/delete/{id}(id=${appointment.id})}" method="post" style="display:inline;">
+                        <button type="submit" class="delete-button">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
+
+
+<!--<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointments by Date</title>
+</head>
+<body>
+    <h1>Appointments for Date: <span th:text="${date}"></span></h1>
+    <a href="/adminUI/appointments"><button>Back to All Appointments</button></a>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Status</th>
+                <th>Date</th>
+                <th>Reason</th>
+                <th>Patient ID</th>
+                <th>Time</th>
+                <th>Nurse ID</th>
+                <th>Doctor ID</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>		
+            <tr th:each="appointment : ${appointments}">
+                <td th:text="${appointment.id}"></td>
+                <td th:text="${appointment.appStatus}"></td>
+                <td th:text="${appointment.date}"></td>
+                <td th:text="${appointment.disease}"></td>
+                <td th:text="${appointment.patient_id}"></td>
+                <td th:text="${appointment.time}"></td>
+                <td th:text="${appointment.nurse_id}"></td>
+                <td th:text="${appointment.physician_id}"></td>
+                <td>
+                    <a th:href="@{/adminUI/update/{id}(id=${appointment.id})}"><button>Update</button></a>
+                    <form th:action="@{/adminUI/delete/{id}(id=${appointment.id})}" method="post" style="display:inline;">
+                        <button type="submit">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>-->
